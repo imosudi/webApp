@@ -1,9 +1,11 @@
 from flask import Flask, render_template
 from flask import request
 from flask import redirect, url_for
-from flask.ext.script import Manager
+from flask.ext.script import Manager, Bootstrap
 
 app = Flask(__name__)
+
+bootsrap = Bootstrap(app)
 
 manager = Manager(app)
 
@@ -35,7 +37,10 @@ def index():
 	return render_template('index.html')
 	pass
 
-
+@app.route('/user/<name>')
+def user(name):
+	return render_template('user.html', name=name)
+	pass
 
 
 
