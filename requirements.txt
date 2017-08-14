@@ -3,3 +3,7 @@ itsdangerous
 Werkzeug
 Jinja2
 click
+flask-script
+flask-bootstrap
+flask-moment
+flask-wtf
