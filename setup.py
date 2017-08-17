@@ -1,11 +1,11 @@
 from flask import Flask, render_template
 from flask import request
 from flask import redirect, url_for
-from flask.ext.script import Manager
-from flask.ext.bootstrap import Bootstrap
+from flask_script import Manager
+from flask_bootstrap import Bootstrap
 from datetime import datetime
-from flask.ext.moment import Moment
-from flask.ext.wtf import Form
+from flask_moment import Moment
+from flask_wtf import Form
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 
@@ -62,6 +62,11 @@ def index():
 	return render_template('index.html', form=form, name=name)
 	pass
 
+class NameForm(Form):
+	name = StringField('What is your name?', validators=[Required()])
+	submit = SubmitField('Submit')
+
+
 @app.route('/user/<name>')
 def user(name):
 	return render_template('user.html', name=name)
@@ -76,9 +81,7 @@ def internal_server_error(e):
 	return render_template('500.html'), 500
 
 
-class NameForm(Form):
-	name = StringField('What is your name?', validators=[Required()])
-	submit = SubmitField('Submit')
+
 
 
 
